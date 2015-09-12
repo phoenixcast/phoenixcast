@@ -26,6 +26,8 @@ defmodule Phoenixcast.ConnCase do
 
       import Phoenixcast.Router.Helpers
 
+      import EctoFixtures, only: [fixtures: 1]
+
       # The default endpoint for testing
       @endpoint Phoenixcast.Endpoint
     end
