@@ -1,5 +1,6 @@
 defmodule Phoenixcast.PageControllerTest do
   use Phoenixcast.ConnCase
+  import YoutubexParse
 
   setup do
     %{videos: videos} = fixtures(:videos)
@@ -24,9 +25,9 @@ defmodule Phoenixcast.PageControllerTest do
   test "GET / return video images", context do
     conn = get conn(), "/"
 
-    assert html_response(conn, 200) =~ context[:videos][:video_1].photo_url
-    assert html_response(conn, 200) =~ context[:videos][:video_2].photo_url
-    assert html_response(conn, 200) =~ context[:videos][:video_3].photo_url
+    assert html_response(conn, 200) =~ YoutubexParse.Image.high_image(context[:videos][:video_1].video_url)
+    assert html_response(conn, 200) =~ YoutubexParse.Image.high_image(context[:videos][:video_2].video_url)
+    assert html_response(conn, 200) =~ YoutubexParse.Image.high_image(context[:videos][:video_3].video_url)
   end
 
   test "GET / return video url", context do

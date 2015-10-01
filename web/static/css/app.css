@@ -70,3 +70,6 @@ form.link, form.button {
     border-bottom: 0;
   }
 }
+.media-heading {
+  margin-top: 10px;
+}

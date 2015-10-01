@@ -35,6 +35,7 @@ defmodule Phoenixcast.Mixfile do
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:ecto_fixtures, "~> 0.0", only: :test}]
+     {:ecto_fixtures, "~> 0.0", only: :test},
+     {:youtubex_parser, github: "victorlcampos/youtubex-parse", app: false}]
   end
 end
