@@ -1,10 +1,6 @@
 defmodule Phoenixcast.Video do
   use Phoenixcast.Web, :model
-
-  import YoutubexParse.Image
-
   before_insert :set_video_url
-
   schema "videos" do
     field :title      , :string
     field :description, :string
@@ -30,6 +26,24 @@ defmodule Phoenixcast.Video do
 
   def set_video_url(changeset) do
     changeset
-    |> Ecto.Changeset.put_change(:photo_url, YoutubexParse.Image.high_image(Ecto.Changeset.get_field(changeset, :video_url)))
+    |> Ecto.Changeset.put_change(:photo_url, youtube_photo_url(changeset))
   end
+
+  defp youtube_photo_url(changeset) do
+    case fetch_youtube_data(changeset) do
+      {:ok, []} ->
+        ""
+      {:ok, video} ->
+        video["thumbnails"]["high"]["url"]
+    end
+  end
+
+  defp fetch_youtube_data(changeset) do
+    changeset |>
+    fetch_video_url |>
+    Ytx.Video.find(youtube_api_key)
+  end
+
+  defp fetch_video_url(changeset), do: Ecto.Changeset.get_field(changeset, :video_url)
+  defp youtube_api_key, do: Application.get_env(:phoenixcast, :youtube_api_key)
 end

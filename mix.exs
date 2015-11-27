@@ -17,8 +17,9 @@ defmodule Phoenixcast.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {Phoenixcast, []},
+     env: [youtube_api_key: (System.get_env("YOUTUBE_API_KEY") || "youtube_api_key")],
      applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :ytx]]
   end
 
   # Specifies which paths to compile per environment
@@ -36,6 +37,6 @@ defmodule Phoenixcast.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
      {:ecto_fixtures, "~> 0.0", only: :test},
-     {:youtubex_parser, github: "victorlcampos/youtubex-parse", app: false}]
+     {:ytx, "~> 0.0.4"}]
   end
 end
