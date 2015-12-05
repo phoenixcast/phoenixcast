@@ -13,16 +13,6 @@
       <% end %>
 
       <div class="form-group">
-        <label>Título</label>
-        <%= text_input f, :title, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <label>Descrição</label>
-        <%= textarea f, :description, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
         <label>Video Url</label>
         <%= text_input f, :video_url, class: "form-control" %>
       </div>

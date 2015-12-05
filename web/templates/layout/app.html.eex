@@ -17,6 +17,7 @@
         <ul class="nav nav-pills pull-right">
           <!-- <li><a href="http://www.phoenixframework.org/docs">Sign in</a></li> -->
           <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
+          <li><a href="https://github.com/phoenixcast/phoenixcast">Github</a></li>
         </ul>
         <span class="logo"></span>
       </div>

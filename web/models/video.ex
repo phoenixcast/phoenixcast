@@ -1,16 +1,18 @@
 defmodule Phoenixcast.Video do
   use Phoenixcast.Web, :model
-  before_insert :set_video_url
+
+  require IEx
+
   schema "videos" do
+    field :video_url  , :string
     field :title      , :string
     field :description, :string
-    field :video_url  , :string
     field :photo_url  , :string
 
     timestamps
   end
 
-  @required_fields ~w(title description video_url)
+  @required_fields ~w(video_url title description photo_url)
   @optional_fields ~w()
 
   @doc """
@@ -21,29 +23,33 @@ defmodule Phoenixcast.Video do
   """
   def changeset(model, params \\ :empty) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(put_youtube_data(params), @required_fields, @optional_fields)
   end
 
-  def set_video_url(changeset) do
-    changeset
-    |> Ecto.Changeset.put_change(:photo_url, youtube_photo_url(changeset))
+  def put_youtube_data(params) do
+    {:ok, video} = fetch_youtube_data(params)
+    do_put_youtube_data(params, video)
   end
 
-  defp youtube_photo_url(changeset) do
-    case fetch_youtube_data(changeset) do
-      {:ok, []} ->
-        ""
-      {:ok, video} ->
-        video["thumbnails"]["high"]["url"]
-    end
+  defp do_put_youtube_data(params, []), do: params
+  defp do_put_youtube_data(params, video) do
+    params
+    |> Map.put("photo_url"  , youtube_photo_url(video))
+    |> Map.put("title"      , youtube_title(video))
+    |> Map.put("description", youtube_description(video))
   end
 
-  defp fetch_youtube_data(changeset) do
-    changeset |>
+  defp fetch_youtube_data(params) do
+    params |>
     fetch_video_url |>
     Ytx.Video.find(youtube_api_key)
   end
+  defp fetch_video_url(params), do: Map.get(params, "video_url")
 
-  defp fetch_video_url(changeset), do: Ecto.Changeset.get_field(changeset, :video_url)
-  defp youtube_api_key, do: Application.get_env(:phoenixcast, :youtube_api_key)
+  defp youtube_photo_url(video)  , do: video["thumbnails"]["high"]["url"]
+  defp youtube_title(video)      , do: video["title"]
+  defp youtube_description(video), do: video["description"]
+
+
+  defp youtube_api_key , do: Application.get_env(:phoenixcast, :youtube_api_key)
 end

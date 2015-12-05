@@ -4,7 +4,7 @@ defmodule Phoenixcast.Repo.Migrations.CreateVideo do
   def change do
     create table(:videos) do
       add :title, :string
-      add :description, :string
+      add :description, :text
       add :video_url, :string
       add :photo_url, :string
 
