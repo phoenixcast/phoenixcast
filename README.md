@@ -14,4 +14,4 @@
 
 ## HOW TO ADD NEW VIDEO
 
-Access /videos/new
+Access /videos/new and put video ID
