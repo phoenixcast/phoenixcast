@@ -11,3 +11,7 @@
   heroku config:set ADMIN_PASSWORD="secret"
   heroku config:set YOUTUBE_API_KEY="youtube_api_key"
 ```
+
+## HOW TO ADD NEW VIDEO
+
+Access /videos/new
