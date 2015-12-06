@@ -1,7 +1,7 @@
 defmodule Phoenixcast.VideoController do
   use Phoenixcast.Web, :controller
 
-  plug BasicAuth, use_config: :admin_basic_auth
+  plug BasicAuth, use_config: :basic_auth
 
   alias Phoenixcast.Video
 
