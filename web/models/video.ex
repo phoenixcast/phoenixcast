@@ -52,5 +52,5 @@ defmodule Phoenixcast.Video do
   defp youtube_title(video)      , do: video["title"]
   defp youtube_description(video), do: video["description"]
 
-  defp youtube_api_key           , do: Application.get_env(:youtube, :api_key)
+  defp youtube_api_key           , do: Application.get_env(:ytx, :api_key)
 end
