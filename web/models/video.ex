@@ -26,6 +26,7 @@ defmodule Phoenixcast.Video do
     |> cast(put_youtube_data(params), @required_fields, @optional_fields)
   end
 
+  def put_youtube_data(:empty), do: :empty
   def put_youtube_data(params) do
     {:ok, video} = fetch_youtube_data(params)
     do_put_youtube_data(params, video)
@@ -44,12 +45,12 @@ defmodule Phoenixcast.Video do
     fetch_video_url |>
     Ytx.Video.find(youtube_api_key)
   end
+
   defp fetch_video_url(params), do: Map.get(params, "video_url")
 
   defp youtube_photo_url(video)  , do: video["thumbnails"]["high"]["url"]
   defp youtube_title(video)      , do: video["title"]
   defp youtube_description(video), do: video["description"]
 
-
-  defp youtube_api_key , do: Application.get_env(:phoenixcast, :youtube_api_key)
+  defp youtube_api_key           , do: Application.get_env(:youtube, :api_key)
 end

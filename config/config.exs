@@ -19,6 +19,12 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :admin_basic_auth, realm: "Admin Area",
+                          username: (System.get_env("ADMIN_USERNAME") || "admin"),
+                          password: (System.get_env("ADMIN_PASSWORD") || "secret")
+
+config :youtube, api_key: (System.get_env("YOUTUBE_API_KEY") || "youtube_api_key")
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
