@@ -10,6 +10,7 @@
   heroku config:set ADMIN_USERNAME="admin"
   heroku config:set ADMIN_PASSWORD="secret"
   heroku config:set YOUTUBE_API_KEY="youtube_api_key"
+  heroku config:set ANALYTICS="your_google_analytics_key"
 ```
 
 ## HOW TO ADD NEW VIDEO

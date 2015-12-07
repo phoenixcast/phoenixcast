@@ -17,7 +17,7 @@ defmodule Phoenixcast.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {Phoenixcast, []},
-     env: [],
+     env: [analytics: System.get_env("ANALYTICS")],
      applications: [:phoenix, :phoenix_html, :cowboy, :logger,
                     :phoenix_ecto, :postgrex, :ytx]]
   end
