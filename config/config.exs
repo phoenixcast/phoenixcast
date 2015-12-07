@@ -14,6 +14,8 @@ config :phoenixcast, Phoenixcast.Endpoint,
   pubsub: [name: Phoenixcast.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :phoenixcast, analytics: System.get_env("ANALYTICS")
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
