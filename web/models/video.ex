@@ -2,6 +2,7 @@ defmodule Phoenixcast.Video do
   use Phoenixcast.Web, :model
 
   require IEx
+  import Ecto.Query
 
   schema "videos" do
     field :video_url  , :string
@@ -26,14 +27,16 @@ defmodule Phoenixcast.Video do
     |> cast(put_youtube_data(params), @required_fields, @optional_fields)
   end
 
-  def put_youtube_data(:empty), do: :empty
-  def put_youtube_data(params) do
-    {:ok, video} = fetch_youtube_data(params)
-    do_put_youtube_data(params, video)
-  end
+  @doc """
+    return videos from inserted order
+  """
+  def reverse_inserted_at_order(query \\ __MODULE__), do: from(v in query, order_by: [desc: v.inserted_at])
 
-  defp do_put_youtube_data(params, []), do: params
-  defp do_put_youtube_data(params, video) do
+  defp put_youtube_data(:empty), do: :empty
+  defp put_youtube_data(params), do: put_youtube_data(params, fetch_youtube_data(params))
+
+  defp put_youtube_data(params, {:ok, []}), do: params
+  defp put_youtube_data(params, {:ok, video}) do
     params
     |> Map.put("photo_url"  , youtube_photo_url(video))
     |> Map.put("title"      , youtube_title(video))
