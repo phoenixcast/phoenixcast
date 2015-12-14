@@ -1,7 +1,6 @@
 defmodule Phoenixcast.Video do
   use Phoenixcast.Web, :model
 
-  require IEx
   import Ecto.Query
 
   schema "videos" do
@@ -38,6 +37,7 @@ defmodule Phoenixcast.Video do
   defp put_youtube_data(params, {:ok, []}), do: params
   defp put_youtube_data(params, {:ok, video}) do
     params
+    |> Map.put("video_url"  , youtube_url(params))
     |> Map.put("photo_url"  , youtube_photo_url(video))
     |> Map.put("title"      , youtube_title(video))
     |> Map.put("description", youtube_description(video))
@@ -54,6 +54,8 @@ defmodule Phoenixcast.Video do
   defp youtube_photo_url(video)  , do: video["thumbnails"]["high"]["url"]
   defp youtube_title(video)      , do: video["title"]
   defp youtube_description(video), do: video["description"]
+
+  defp youtube_url(params), do: "https://www.youtube.com/watch?v=" <> Ytx.get_id(fetch_video_url(params))
 
   defp youtube_api_key           , do: Application.get_env(:ytx, :api_key)
 end
