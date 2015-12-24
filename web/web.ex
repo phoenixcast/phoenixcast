@@ -18,7 +18,11 @@ defmodule Phoenixcast.Web do
 
   def model do
     quote do
-      use Ecto.Model
+      use Ecto.Schema
+
+      import Ecto
+      import Ecto.Changeset
+      import Ecto.Query, only: [from: 1, from: 2]
     end
   end
 
@@ -27,10 +31,11 @@ defmodule Phoenixcast.Web do
       use Phoenix.Controller
 
       alias Phoenixcast.Repo
-      import Ecto.Model
+      import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
 
       import Phoenixcast.Router.Helpers
+      import Phoenixcast.Gettext
     end
   end
 
@@ -45,6 +50,8 @@ defmodule Phoenixcast.Web do
       use Phoenix.HTML
 
       import Phoenixcast.Router.Helpers
+      import Phoenixcast.ErrorHelpers
+      import Phoenixcast.Gettext
     end
   end
 
@@ -59,9 +66,9 @@ defmodule Phoenixcast.Web do
       use Phoenix.Channel
 
       alias Phoenixcast.Repo
-      import Ecto.Model
+      import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
-
+      import Phoenixcast.Gettext
     end
   end
 

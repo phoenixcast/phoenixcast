@@ -1,8 +1,6 @@
 defmodule Phoenixcast.Video do
   use Phoenixcast.Web, :model
 
-  import Ecto.Query
-
   schema "videos" do
     field :video_url  , :string
     field :title      , :string
