@@ -1,0 +1,20 @@
+<%= link "New", to: admin_video_path(@conn, :new), class: "btn btn-default btn-xs" %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>id</th><th>Title</th><th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for video <- @videos do %>
+      <tr>
+        <td><%= video.id %></td>
+        <td><%= video.title %></td>
+        <td>
+          <%= link "Edit"  , to: admin_video_path(@conn, :edit, video), class: "btn btn-default btn-xs" %>
+          <%= link "Delete", to: admin_video_path(@conn, :delete, video), method: :delete, class: "btn btn-danger btn-xs" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

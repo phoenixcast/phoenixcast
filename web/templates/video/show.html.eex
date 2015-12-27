@@ -1,0 +1,8 @@
+<h2>Show video</h2>
+
+<ul>
+
+</ul>
+
+<%= link "Edit", to: admin_video_path(@conn, :edit, @video) %>
+<%= link "Back", to: admin_video_path(@conn, :index) %>
