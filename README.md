@@ -13,6 +13,6 @@
   heroku config:set ANALYTICS="your_google_analytics_key"
 ```
 
-## HOW TO ADD NEW VIDEO
+## HOW TO MANAGE VIDEOS
 
-Access /videos/new and put video ID
+Access /admin/videos/

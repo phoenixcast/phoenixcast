@@ -17,6 +17,13 @@ defmodule Phoenixcast.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    resources "/videos", VideoController, only: [:index, :show]
+  end
+
+  scope "/admin", Phoenixcast.Admin, as: :admin do
+    pipe_through :browser # Use the default browser stack
+
     resources "/videos", VideoController
   end
 

@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h2>Welcome to Phoenix Cast!</h2>
+  <%= gettext "Welcome to %{name}", name: "Phoenix Cast!" %>
 
   <%# form_for @conn, "/", [as: :search, method: :get], fn f -> %>
     <div class="input-group">
@@ -23,23 +23,3 @@
     </div>
   </div>
 <% end %>
-
-<!-- <nav>
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav> -->
