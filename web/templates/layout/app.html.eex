@@ -31,7 +31,7 @@
           <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
           <li><a href="https://github.com/phoenixcast/phoenixcast">Github</a></li>
         </ul>
-        <span class="logo"></span>
+        <a href="/" class="logo"></a>
       </div>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

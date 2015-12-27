@@ -10,6 +10,10 @@ defmodule Phoenixcast.Video do
     timestamps
   end
 
+  def youtube_id(video) do
+    Ytx.get_id(video.video_url)
+  end
+
   @required_fields ~w(video_url title description photo_url)
   @optional_fields ~w()
 

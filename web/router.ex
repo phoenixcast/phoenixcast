@@ -18,7 +18,7 @@ defmodule Phoenixcast.Router do
 
     get "/", PageController, :index
 
-    resources "/videos", VideoController, only: [:index, :show]
+    resources "/videos", VideoController, only: [:show]
   end
 
   scope "/admin", Phoenixcast.Admin, as: :admin do

@@ -1,8 +1,10 @@
-<h2>Show video</h2>
-
-<ul>
-
-</ul>
-
-<%= link "Edit", to: admin_video_path(@conn, :edit, @video) %>
-<%= link "Back", to: admin_video_path(@conn, :index) %>
+<%= link gettext("Back"), to: page_path(@conn, :index) %>
+<div class="embed-responsive embed-responsive-4by3">
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<%= Phoenixcast.Video.youtube_id(@video) %>" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class="page-header">
+  <h3><%= @video.title %></h3>
+</div>
+<p>
+  <%= @video.description %>
+</p>
