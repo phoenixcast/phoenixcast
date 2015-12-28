@@ -1,0 +1,23 @@
+<%= for {video, index} <- Enum.with_index(@videos) do %>
+  <%= if rem(index,3) == 0 do %>
+    <div class="row">
+  <% end %>
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <%= tag(:img, src: video.photo_url) |> link(to: video_path(@conn, :show, video)) %>
+      <div class="caption">
+        <h3><%= video.title |> Phoenixcast.String.truncate(50) |> link(to: video_path(@conn, :show, video)) %></h3>
+        <p><%= Phoenixcast.String.truncate(video.description, 200) %></p>
+      </div>
+    </div>
+  </div>
+
+  <%= if rem(index,3) == 2 do %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= if Enum.count(@videos) > 0 && rem(Enum.count(@videos), 3) != 2 do %>
+  </div>
+<% end %>

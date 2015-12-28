@@ -3,7 +3,10 @@ defmodule Phoenixcast.VideoController do
 
   alias Phoenixcast.Video
 
-  plug :scrub_params, "video" when action in [:create, :update]
+  def index(conn, _params) do
+    videos = Video.reverse_inserted_at_order |> Repo.all
+    render conn, "index.html", videos: videos
+  end
 
   def show(conn, %{"id" => id}) do
     video = Repo.get!(Video, id)
