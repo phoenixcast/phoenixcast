@@ -27,3 +27,7 @@ form.link, form.button {
     max-width: 970px;
   }
 }
+
+.thumbnail .caption {
+  min-height: 256px;
+}
