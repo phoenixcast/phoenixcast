@@ -40,6 +40,7 @@ exports.config = {
     // Dependencies and current project directories to watch
     watched: ["deps/phoenix/web/static",
               "deps/phoenix_html/web/static",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
               "web/static", "test/static"],
 
     // Where to compile files to
