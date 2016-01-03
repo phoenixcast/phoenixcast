@@ -11,7 +11,7 @@ defmodule Phoenixcast.Video do
   end
 
   def youtube_id(video) do
-    Ytx.get_id(video.video_url)
+    Ytx.Video.get_id(video.video_url)
   end
 
   @required_fields ~w(video_url title description photo_url)
@@ -57,7 +57,7 @@ defmodule Phoenixcast.Video do
   defp youtube_title(video)      , do: video["title"]
   defp youtube_description(video), do: video["description"]
 
-  defp youtube_url(params), do: "https://www.youtube.com/watch?v=" <> Ytx.get_id(fetch_video_url(params))
+  defp youtube_url(params), do: "https://www.youtube.com/watch?v=" <> Ytx.Video.get_id(fetch_video_url(params))
 
   defp youtube_api_key           , do: Application.get_env(:ytx, :api_key)
 end

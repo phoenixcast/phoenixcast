@@ -37,7 +37,7 @@ defmodule Phoenixcast.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
-     {:ytx, "~> 0.0.4"},
+     {:ytx, "~> 0.0.5"},
      {:basic_auth, "~> 1.0.0"},
      {:ecto_fixtures, "~> 0.0", only: :test}]
   end
